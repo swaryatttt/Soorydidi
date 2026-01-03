@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorry Didi - A Heartfelt Apology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Gochi+Hand&family=Schoolbell&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Schoolbell', cursive;
+            background-color: #f5f0e1;
+            overflow: hidden;
+            height: 100vh;
+            cursor: default;
+            background-image: 
+                linear-gradient(to right, #e8e1d1 1px, transparent 1px),
+                linear-gradient(to bottom, #e8e1d1 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* First Page - Notebook Cover */
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 1s ease, opacity 1s ease;
+            transform-origin: left center;
+            padding: 20px;
+        }
+
+        #page-1 {
+            z-index: 10;
+            background-color: #fffef7;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Notebook lines */
+        .notebook-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(
+                to bottom,
+                transparent,
+                transparent 24px,
+                rgba(0, 0, 0, 0.1) 24px,
+                rgba(0, 0, 0, 0.1) 25px
+            );
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .notebook-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem;
+            color: #d32f2f;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .click-instruction {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 1.8rem;
+            color: #5d4037;
+            text-align: center;
+            margin-top: 3rem;
+            padding: 15px 30px;
+            background-color: rgba(255, 248, 225, 0.8);
+            border-radius: 10px;
+            border: 2px dashed #ff9800;
+            position: relative;
+            z-index: 2;
+            max-width: 80%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .click-instruction i {
+            margin-right: 10px;
+            color: #ff9800;
+        }
+
+        .notebook-spiral {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 40px;
+            background: repeating-linear-gradient(
+                180deg,
+                #b0bec5 0px,
+                #b0bec5 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            z-index: 1;
+        }
+
+        /* Second Page - Apology Letter */
+        #page-2 {
+            z-index: 9;
+            background-color: #fffef7;
+            transform: rotateY(-90deg);
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-2-content {
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #d32f2f;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .apology-text {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 1.6rem;
+            line-height: 1.8;
+            color: #5d4037;
+            text-align: justify;
+            margin-bottom: 2rem;
+            padding: 0 20px;
+        }
+
+        .swipe-instruction {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 1.8rem;
+            color: #5d4037;
+            text-align: center;
+            margin-top: 3rem;
+            padding: 15px 30px;
+            background-color: rgba(255, 248, 225, 0.8);
+            border-radius: 10px;
+            border: 2px dashed #4caf50;
+            position: relative;
+            z-index: 2;
+            animation: pulse 2s infinite;
+        }
+
+        .swipe-instruction i {
+            margin-right: 10px;
+            color: #4caf50;
+        }
+
+        /* Third Page - Hug Request */
+        #page-3 {
+            z-index: 8;
+            background-color: #fffef7;
+            transform: rotateY(-90deg);
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .hug-container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hug-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #d32f2f;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hug-icon {
+            font-size: 8rem;
+            color: #ff9800;
+            margin: 2rem 0;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .note {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 1.8rem;
+            color: #5d4037;
+            margin-top: 2rem;
+            padding: 15px 30px;
+            background-color: rgba(255, 248, 225, 0.8);
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        /* Animation classes */
+        .page-open {
+            transform: rotateY(0deg) !important;
+            opacity: 1 !important;
+        }
+
+        .page-close {
+            transform: rotateY(90deg) !important;
+            opacity: 0 !important;
+        }
+
+        /* Decorative elements */
+        .sticker {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .sticker-1 { top: 15%; left: 10%; transform: rotate(-15deg); color: #ff9800; }
+        .sticker-2 { top: 20%; right: 15%; transform: rotate(10deg); color: #4caf50; }
+        .sticker-3 { bottom: 25%; left: 15%; transform: rotate(-10deg); color: #2196f3; }
+        .sticker-4 { bottom: 20%; right: 10%; transform: rotate(15deg); color: #9c27b0; }
+
+        .tape {
+            position: absolute;
+            width: 100px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.7);
+            transform: rotate(-45deg);
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .tape-1 { top: 10%; left: 5%; }
+        .tape-2 { bottom: 10%; right: 5%; }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .notebook-title {
+                font-size: 3.5rem;
+            }
+            
+            .click-instruction, .swipe-instruction {
+                font-size: 1.5rem;
+            }
+            
+            .apology-text {
+                font-size: 1.4rem;
+            }
+            
+            .hug-text {
+                font-size: 3rem;
+            }
+            
+            .hug-icon {
+                font-size: 6rem;
+            }
+            
+            .note {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1: Notebook Cover -->
+    <div id="page-1" class="page">
+        <div class="notebook-spiral"></div>
+        <div class="notebook-lines"></div>
+        
+        <div class="tape tape-1"></div>
+        <div class="tape tape-2"></div>
+        
+        <div class="sticker sticker-1"><i class="fas fa-heart"></i></div>
+        <div class="sticker sticker-2"><i class="fas fa-star"></i></div>
+        <div class="sticker sticker-3"><i class="fas fa-smile"></i></div>
+        <div class="sticker sticker-4"><i class="fas fa-heart"></i></div>
+        
+        <h1 class="notebook-title">Sorry Didi</h1>
+        
+        <div class="click-instruction">
+            <i class="fas fa-hand-pointer"></i> Click anywhere to open the notebook...
+        </div>
+    </div>
+
+    <!-- Page 2: Apology Letter -->
+    <div id="page-2" class="page">
+        <div class="notebook-spiral"></div>
+        <div class="notebook-lines"></div>
+        
+        <div class="page-2-content">
+            <h2 class="page-title">My Apology Letter</h2>
+            
+            <div class="apology-text">
+                <p>Dear Didi,</p>
+                <p>Mujhe bahut afsos hai ki maine aaj tumse aise baat kiya. Maine jo bhi kaha, woh galat tha aur main jaanta hoon ki maine tumhe dukh diya.</p>
+                <p>Actually, meri kuch personal tension thi lekin uska matlab ye nahi ki main tumpe gussa nikalun. Tum mere liye bahut important ho, aur tumhara pyaar mere liye sabse zyada matter karta hai.</p>
+                <p>Maine socha nahi tha ki mere words tumhe itna hurt karenge. Maine bas gusse mein aake aisi baatein bol di jo mujhe nahi bolni chahiye thi.</p>
+                <p>Please mujhe maaf kar do. Main promise karta hoon ki aage se kabhi bhi aise nahi karunga. Main apni feelings control karne ki koshish karunga.</p>
+                <p>Tum meri sabse best didi ho, aur main hamesha tumse pyaar karta hoon. Please meri mistake ke liye mujhe maaf kar do.</p>
+                <p>With lots of love and regret,<br>Your Brother</p>
+            </div>
+            
+            <div class="swipe-instruction">
+                <i class="fas fa-hand-point-up"></i> Swipe up for a special request...
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Hug Request -->
+    <div id="page-3" class="page">
+        <div class="notebook-spiral"></div>
+        <div class="notebook-lines"></div>
+        
+        <div class="hug-container">
+            <div class="hug-text">1 Hug to banta hai??</div>
+            <div class="hug-icon"><i class="fas fa-hands-helping"></i></div>
+            <div class="note">
+                Please didi, ek hug de do. Main tumse bahut pyaar karta hoon!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get all pages
+        const page1 = document.getElementById('page-1');
+        const page2 = document.getElementById('page-2');
+        const page3 = document.getElementById('page-3');
+        
+        let currentPage = 1;
+        let isAnimating = false;
+        
+        // Function to open next page with animation
+        function openNextPage() {
+            if (isAnimating) return;
+            
+            isAnimating = true;
+            
+            if (currentPage === 1) {
+                // Close page 1 and open page 2
+                page1.classList.add('page-close');
+                
+                setTimeout(() => {
+                    page1.style.display = 'none';
+                    page2.style.display = 'flex';
+                    
+                    setTimeout(() => {
+                        page2.classList.add('page-open');
+                        currentPage = 2;
+                        isAnimating = false;
+                    }, 50);
+                }, 1000);
+            } else if (currentPage === 2) {
+                // Close page 2 and open page 3
+                page2.classList.remove('page-open');
+                page2.classList.add('page-close');
+                
+                setTimeout(() => {
+                    page2.style.display = 'none';
+                    page3.style.display = 'flex';
+                    
+                    setTimeout(() => {
+                        page3.classList.add('page-open');
+                        currentPage = 3;
+                        isAnimating = false;
+                    }, 50);
+                }, 1000);
+            }
+        }
+        
+        // Click anywhere to open next page (for page 1)
+        document.addEventListener('click', function(event) {
+            if (currentPage === 1 && !isAnimating) {
+                openNextPage();
+            }
+        });
+        
+        // Swipe up detection for page 2
+        let touchStartY = 0;
+        let touchEndY = 0;
+        
+        document.addEventListener('touchstart', function(event) {
+            if (currentPage === 2) {
+                touchStartY = event.changedTouches[0].screenY;
+            }
+        }, false);
+        
+        document.addEventListener('touchend', function(event) {
+            if (currentPage === 2) {
+                touchEndY = event.changedTouches[0].screenY;
+                
+                // Check if swipe up (start > end with significant difference)
+                if (touchStartY - touchEndY > 100 && !isAnimating) {
+                    openNextPage();
+                }
+            }
+        }, false);
+        
+        // Keyboard navigation support
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === 'Enter' || event.key === ' ') {
+                if (currentPage === 1 && !isAnimating) {
+                    openNextPage();
+                }
+            }
+            
+            if (event.key === 'ArrowUp') {
+                if (currentPage === 2 && !isAnimating) {
+                    openNextPage();
+                }
+            }
+        });
+        
+        // Mouse wheel for page 2 to page 3 transition
+        document.addEventListener('wheel', function(event) {
+            if (currentPage === 2 && !isAnimating && event.deltaY < 0) {
+                // Only trigger on upward scroll
+                openNextPage();
+            }
+        });
+        
+        // Initialize the notebook with some subtle animation
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                page1.style.transition = 'transform 1s ease, opacity 1s ease';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
